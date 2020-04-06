@@ -1,11 +1,19 @@
 #ifndef LIMITS_H
 #if defined __APPLE__
 #include <limits.h>
-#else
-#include <linux/limits.h>
 #endif
 #define LIMITS_H
 #endif
+
+/*
+ * File system limits
+ *
+ * TODO: NAME_MAX and OPEN_MAX are file system limits or not? Are they the
+ *       same as FILENAME_MAX and FOPEN_MAX from stdio.h?
+ * NOTE: Apparently the actual size of PATH_MAX is 260, but a space is
+ *       required for the NUL. TODO: Test?
+ */
+#	define PATH_MAX    259
 
 typedef struct _pixel
 {
