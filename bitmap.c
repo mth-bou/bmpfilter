@@ -315,6 +315,27 @@ void applyFilterSimpleBlur(BITMAP *bmp)
 void applyFilterMirror(BITMAP *bmp)
 {
     /* TODO */
+	int size = bmp->width * bmp->height;
+	int fullSize = 2*size;
+	PIXEL *pix;
+	PIXEL *first = malloc(sizeof(PIXEL)*fullSize);
+	
+	for (pix = bmp->raster;  size > 0; pix++, size--, first++) {
+		first = pix;
+	}
+	
+	size = fullSize/2;
+	
+	for (pix = bmp->raster+(size-1); size > 0; pix--, size--, first++) {
+		first = pix;
+	}
+	
+	bmp->width = bmp->width * 2;
+	bmp->height = bmp->height * 2;
+	
+	bmp->size = bmp->size * 2;
+	
+	bmp->raster = pix-(fullSize-1);
 }
 
 void applyFilter(BITMAP *bmp, FILTER filter)
