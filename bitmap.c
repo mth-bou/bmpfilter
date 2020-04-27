@@ -342,6 +342,17 @@ void applyFilter(BITMAP *bmp, FILTER filter)
 {
     /* TODO */
     /* Dispatcher that calls the right method regarding the filter to apply on the bitmap */
+    printf("choose");
+    if (filter == getCorrespondingFilter("blur"))
+    {
+        applyFilterSimpleBlur(bmp);
+    } else if (filter == getCorrespondingFilter("mirror"))
+    {
+        applyFilterMirror(bmp);
+    } else
+    {
+        applyFilterColor(bmp, filter);
+    }
 }
 
 FILTER getCorrespondingFilter(const char *filter_name)
