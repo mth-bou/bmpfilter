@@ -301,6 +301,12 @@ void applyFilterSimpleBlur(BITMAP *bmp)
 {
     /* TODO */
     /* Considering each color channel of a pixel as the average result of the 9 pixels matrix centered on it */
+	PIXEL *pix;
+	int i;
+	i = bmp->width * bmp->height;
+	for (pix = bmp->raster;  i > 0; pix++, i--) {
+		pix->green = 0;
+	}
 }
 
 /*
